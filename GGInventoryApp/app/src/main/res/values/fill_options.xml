@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="qty">
+        <item> </item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+    </string-array>
+
+    <string-array name="size">
+        <item> </item>
+        <item>4"</item>
+        <item>1 gal</item>
+        <item>2 gal</item>
+        <item>3/4 gal</item>
+        <item>5 gal</item>
+        <item>15 gal</item>
+    </string-array>
+
+    <string-array name="numAvail">
+        <item> </item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+    </string-array>
+
+    <string-array name="details">
+        <item> </item>
+        <item>Big/Tall</item>
+        <item>Can-Full</item>
+        <item>Colorful</item>
+        <item>Culinary</item>
+        <item>Drought Tolerant</item>
+        <item>Fragrant</item>
+        <item>Gorgeous</item>
+        <item>Landscapey</item>
+        <item>Light Roots</item>
+        <item>Local Collection</item>
+        <item>New Crop</item>
+        <item>Nice</item>
+        <item>Popular</item>
+        <item>Stunning!</item>
+        <item>Unusual</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="notes">
+        <item> </item>
+        <item>Bud</item>
+        <item>Bloom</item>
+        <item>Bud/Bloom</item>
+        <item>Fruit</item>
+        <item> </item>
+    </string-array>
+
+    <string-array name="type">
+        <item> </item>
+        <item>Perennial</item>
+        <item>Native</item>
+        <item>Succulent</item>
+        <item>Grass</item>
+        <item>Tree</item>
+        <item>Herb</item>
+        <item>Edible</item>
+        <item>Fern</item>
+    </string-array>
+
+    <string-array name="location">
+        <item> </item>
+        <item>Apollo</item>
+        <item>Atlas</item>
+        <item>Earth</item>
+        <item>Europa</item>
+        <item>Jupiter</item>
+        <item>Mars</item>
+        <item>Mercury</item>
+        <item>Moon</item>
+        <item>Neptune</item>
+        <item>Olive Garden</item>
+        <item>Opportunity</item>
+        <item>Pluto</item>
+        <item>Saturn</item>
+        <item>Spirit</item>
+        <item>Venex</item>
+        <item>Venus</item>
+    </string-array>
+
+    <string-array name="quality">
+        <item> </item>
+        <item>Retail</item>
+        <item>Landscape</item>
+    </string-array>
+
+    <string-array name="typeSearch">
+        <item>[None]</item>
+        <item>Perennial</item>
+        <item>Native</item>
+        <item>Succulent</item>
+        <item>Grass</item>
+        <item>Tree</item>
+        <item>Herb</item>
+        <item>Edible</item>
+        <item>Fern</item>
+    </string-array>
+</resources>
