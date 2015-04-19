@@ -45,7 +45,7 @@
             android:layout_margin="6dp"
             android:background="#ff0000ff"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000"
+            android:textColor="#fff"
             style = "@style/ButtonText"
             android:textSize="30sp"
             android:text="@string/search_button"
