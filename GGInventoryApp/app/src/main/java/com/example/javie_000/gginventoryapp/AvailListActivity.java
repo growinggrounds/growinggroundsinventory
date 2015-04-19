@@ -64,6 +64,7 @@ public class AvailListActivity extends Activity {
         // The desired columns to be bound
         columns = new String[]{
                 weeklyDB.KEY_BOTANICALNAME,
+                weeklyDB.KEY_NUMAVAIL,
                 weeklyDB.KEY_SIZE,
                 weeklyDB.KEY_QUALITY,
                 weeklyDB.KEY_DETAILS
@@ -72,6 +73,7 @@ public class AvailListActivity extends Activity {
         // The XML defined views which the data will be bound to
         int[] to = new int[]{
                 R.id.listRowBotanicalName,
+                R.id.listRowQuantity,
                 R.id.listRowSize,
                 R.id.listRowQuality,
                 R.id.listRowDetails
