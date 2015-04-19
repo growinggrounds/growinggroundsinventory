@@ -27,6 +27,35 @@
             />
 
         <TextView
+            android:id="@+id/TVlistRowQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginBottom="6dp"
+            android:text="Quantity:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true" />
+
+
+        <TextView
+            android:id="@+id/listRowQuantity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
+            android:textSize="35sp" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
             android:id="@+id/TVlistRowSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +71,7 @@
 
         <TextView
             android:id="@+id/listRowSize"
-            android:layout_width="150dp"
+            android:layout_width="530dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000"
@@ -68,7 +97,6 @@
             android:textSize="35sp"
             android:layout_alignParentRight="true" />
         </LinearLayout>
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -78,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
-            android:text="Details:"
+            android:text=" Details:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000"
             android:textStyle="bold"
