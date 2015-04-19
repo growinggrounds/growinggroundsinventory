@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/avail_list_button"
+        android:textSize="70dp"
+        android:textColor="#000"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:typeface="serif" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <EditText
+            android:id="@+id/scanBarcodeEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="6dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:hint="@string/scan_item"
+            android:typeface="serif" />
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="6dp"
+            android:background="#ff0000ff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#fff"
+            style = "@style/ButtonText"
+            android:textSize="30sp"
+            android:text="@string/search_button"
+            android:typeface="serif" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_gravity="right"
+        android:baselineAligned="false">
+
+        <Button
+            android:id="@+id/clearAllButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="6dp"
+            android:background="#ffff1800"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
+            style = "@style/ButtonText"
+            android:textSize="30sp"
+            android:text="@string/clearAll_button"
+            android:typeface="serif" />
+    </LinearLayout>
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffff" >
+
+    </ListView>
+
+</LinearLayout>

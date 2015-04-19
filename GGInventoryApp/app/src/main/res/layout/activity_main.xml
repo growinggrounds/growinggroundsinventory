@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/titleText"
+        android:textAlignment="center"
+        android:textSize="90sp"
+        android:textColor="#ffffe504"
+        android:id="@+id/mainTitle"
+        android:gravity="center_horizontal"
+        android:typeface="serif"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="277dp"
+        android:layout_weight="1"
+        android:paddingTop="25dp"
+        android:baselineAligned="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/logo"
+                android:layout_weight="0.24" />
+
+            <Button
+                android:id="@+id/avail_list_button"
+                android:background="#ffff1800"
+                android:text="@string/avail_list_button"
+                style = "@style/ButtonText"
+                android:layout_width="585dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:textSize="80sp"
+                android:textColor="#fff"
+                android:clickable="true"
+                android:typeface="serif" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="125dp"
+        android:layout_weight="1"
+        android:paddingTop="10dp"
+        android:baselineAligned="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="right"
+            >
+
+            <Button
+                android:id="@+id/sync_master_db_button"
+                android:background="#ff696969"
+                android:text="@string/sync_master_db_button"
+                style = "@style/ButtonText"
+                android:layout_width="500dp"
+                android:layout_height="match_parent"
+                android:fontFamily="sans-serif"
+                android:textSize="50sp"
+                android:textColor="#000000"
+                android:typeface="serif" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left">
+
+            <Button
+                android:id="@+id/sync_avail_list_button"
+                android:background="#ff696969"
+                android:text="@string/sync_avail_list_button"
+                style = "@style/ButtonText"
+                android:layout_width="500dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:textSize="50sp"
+                android:textColor="#000000"
+                android:typeface="serif" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
