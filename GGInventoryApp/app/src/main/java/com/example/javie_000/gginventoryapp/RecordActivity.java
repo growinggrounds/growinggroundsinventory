@@ -18,6 +18,8 @@ import com.example.javie_000.gginventoryapp.mainDB.*;
 
 import org.w3c.dom.Text;
 
+import sun.rmi.runtime.Log;
+
 public class RecordActivity extends Activity implements AdapterView.OnItemSelectedListener, View.OnClickListener{
 
     private static final String TAG = "recordActivity";
@@ -255,36 +257,78 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         // Another interface callback
     }
 
+
+    private Boolean isInputValid(String size, int numAvail, String quality, String location, float price) {
+        boolean isValid = false;
+        String message;
+        if (size.isEmpty()) {
+            message = "Size is not filled. * field has to be filled.";
+        }
+        else if (numAvail <= 0) {
+            message = "Number available has to be <= 0.";
+        }
+        else if (size.length() == 0) {
+            message = "Size is not filled. * field has to be filled.";
+        }
+        else if (quality.isEmpty()) {
+            message = "Quality is not filled. * field has to be filled.";
+        }
+        else if (location.isEmpty()) {
+            message = "Location is not filled. * field has to be filled.";
+        }
+        else if (price == 0) {
+            message = "Price is zero. * field has to be filled.";
+        }
+        else {
+            isValid = true;
+            message = "Added to the inventory.";
+        }
+        Toast.makeText(RecordActivity.this, message, Toast.LENGTH_SHORT).show();
+        return false;
+    }
+
     public void onClick(View v){
         Intent intent;
 
         switch(v.getId()){
             case R.id.saveButton:
-                record.size = SpinnerSize.getSelectedItem().toString();
-                record.numAvail = Integer.parseInt(ETnumAvail.getText().toString());
-                record.details = ETdetails.getText().toString();
-                record.notes = SpinnerNotes.getSelectedItem().toString();
-                record.quality = SpinnerQuality.getSelectedItem().toString();
-                record.location = SpinnerLocation.getSelectedItem().toString();
-                record.price = Float.parseFloat(ETprice.getText().toString());
+                Toast.makeText(RecordActivity.this, "yooooooooooooooooooooooooooooooooooooooooooooooooooo", Toast.LENGTH_SHORT).show();
+                String size = SpinnerSize.getSelectedItem().toString();
+                int numAvail = Integer.parseInt(ETnumAvail.getText().toString());
+                String details = ETdetails.getText().toString();
+                String notes = SpinnerNotes.getSelectedItem().toString();
+                String quality = SpinnerQuality.getSelectedItem().toString();
+                String location = SpinnerLocation.getSelectedItem().toString();
+                float price = Float.parseFloat(ETprice.getText().toString());
+                Log.w(TAG, "jijijijijijijijiijijijijijijijijiijijijijijij!!!!!!!!!!!!!");
+                if(isInputValid(size, numAvail, quality, location, price)) {
 
-                if(!fromBarcode && dbWeekly.checkID(rowID)){
-                    // Update record on weeklyDB
-                    if(dbWeekly.updateRecord(record))
-                        Log.w(TAG, "Record " + rowID + "has been updated.....");
-                    else
-                        Log.w(TAG, "Record " + rowID + "has not been updated....");
-                } else{
-                    // Create record on weeklyDB
-                    long newID = dbWeekly.createRecord(record);
-                    Log.w(TAG, "Record " + newID + " has been created....");
+
+                    record.size = SpinnerSize.getSelectedItem().toString();
+                    record.numAvail = Integer.parseInt(ETnumAvail.getText().toString());
+                    record.details = ETdetails.getText().toString();
+                    record.notes = SpinnerNotes.getSelectedItem().toString();
+                    record.quality = SpinnerQuality.getSelectedItem().toString();
+                    record.location = SpinnerLocation.getSelectedItem().toString();
+                    record.price = Float.parseFloat(ETprice.getText().toString());
+
+                    if(!fromBarcode && dbWeekly.checkID(rowID)){
+                        // Update record on weeklyDB
+                        if(dbWeekly.updateRecord(record))
+                            Log.w(TAG, "Record " + rowID + "!!!!ABCDEFGHIJKLMNOPhas been updated.....");
+                        else
+                            Log.w(TAG, "Record " + rowID + "has not been updated....");
+                    } else{
+                        // Create record on weeklyDB
+                        long newID = dbWeekly.createRecord(record);
+                        Log.w(TAG, "Record " + newID + " has been created....");
+                    }
+
+                    //intent = new Intent(RecordActivity.this, AvailListActivity.class);
+                    //startActivity(intent);
+                    finish();
                 }
-
-                //intent = new Intent(RecordActivity.this, AvailListActivity.class);
-                //startActivity(intent);
-                finish();
                 break;
-
             case R.id.deleteButton:
                 new AlertDialog.Builder(RecordActivity.this)
                         .setTitle("Delete Entry")
