@@ -18,6 +18,8 @@ import com.example.javie_000.gginventoryapp.mainDB.*;
 
 import org.w3c.dom.Text;
 
+import sun.rmi.runtime.Log;
+
 public class RecordActivity extends Activity implements AdapterView.OnItemSelectedListener, View.OnClickListener{
 
     private static final String TAG = "recordActivity";
@@ -265,7 +267,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         else if (numAvail <= 0) {
             message = "Number available has to be >= 0.";
         }
-        else if (size.isEmpty()) {
+        else if (size.length() == 0) {
             message = "Size is not filled. * field has to be filled.";
         }
         else if (quality.isEmpty()) {
@@ -282,7 +284,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
             message = "Added to the inventory.";
         }
         Toast.makeText(RecordActivity.this, message, Toast.LENGTH_SHORT).show();
-        return isValid;
+        return false;
     }
 
     public void onClick(View v){
@@ -298,6 +300,8 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                 String location = SpinnerLocation.getSelectedItem().toString();
                 float price = Float.parseFloat(ETprice.getText().toString());
                 if(isInputValid(size, numAvail, quality, location, price)) {
+
+
                     record.size = SpinnerSize.getSelectedItem().toString();
                     record.numAvail = Integer.parseInt(ETnumAvail.getText().toString());
                     record.details = ETdetails.getText().toString();
@@ -309,9 +313,9 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                     if(!fromBarcode && dbWeekly.checkID(rowID)){
                         // Update record on weeklyDB
                         if(dbWeekly.updateRecord(record))
-                            Log.w(TAG, "Record " + rowID + " has been updated.....");
+                            Log.w(TAG, "Record " + rowID + "has been updated.....");
                         else
-                            Log.w(TAG, "Record " + rowID + " has not been updated....");
+                            Log.w(TAG, "Record " + rowID + "has not been updated....");
                     } else{
                         // Create record on weeklyDB
                         long newID = dbWeekly.createRecord(record);
