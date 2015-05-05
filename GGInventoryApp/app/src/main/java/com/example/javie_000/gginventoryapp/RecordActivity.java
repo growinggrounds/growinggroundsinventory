@@ -260,22 +260,19 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         boolean isValid = false;
         String message;
         if (size.isEmpty()) {
-            message = "Size is not filled. * field has to be filled.";
+            message = "A valid size is required.";
         }
         else if (numAvail <= 0) {
-            message = "Number available has to be >= 0.";
-        }
-        else if (size.isEmpty()) {
-            message = "Size is not filled. * field has to be filled.";
+            message = "Number available must be 0 or greater.";
         }
         else if (quality.isEmpty()) {
-            message = "Quality is not filled. * field has to be filled.";
+            message = "Quality is required.";
         }
         else if (location.isEmpty()) {
-            message = "Location is not filled. * field has to be filled.";
+            message = "Location must be specified.";
         }
         else if (price == 0) {
-            message = "Price is zero. * field has to be filled.";
+            message = "Price must be greater than 0.00.";
         }
         else {
             isValid = true;
