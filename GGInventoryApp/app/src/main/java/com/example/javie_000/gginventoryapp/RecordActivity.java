@@ -265,7 +265,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
             message = "Size is not filled. * field has to be filled.";
         }
         else if (numAvail <= 0) {
-            message = "Number available has to be <= 0.";
+            message = "Number available has to be >= 0.";
         }
         else if (size.length() == 0) {
             message = "Size is not filled. * field has to be filled.";
@@ -292,7 +292,6 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
 
         switch(v.getId()){
             case R.id.saveButton:
-                Toast.makeText(RecordActivity.this, "yooooooooooooooooooooooooooooooooooooooooooooooooooo", Toast.LENGTH_SHORT).show();
                 String size = SpinnerSize.getSelectedItem().toString();
                 int numAvail = Integer.parseInt(ETnumAvail.getText().toString());
                 String details = ETdetails.getText().toString();
@@ -300,7 +299,6 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                 String quality = SpinnerQuality.getSelectedItem().toString();
                 String location = SpinnerLocation.getSelectedItem().toString();
                 float price = Float.parseFloat(ETprice.getText().toString());
-                Log.w(TAG, "jijijijijijijijiijijijijijijijijiijijijijijij!!!!!!!!!!!!!");
                 if(isInputValid(size, numAvail, quality, location, price)) {
 
 
@@ -315,7 +313,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                     if(!fromBarcode && dbWeekly.checkID(rowID)){
                         // Update record on weeklyDB
                         if(dbWeekly.updateRecord(record))
-                            Log.w(TAG, "Record " + rowID + "!!!!ABCDEFGHIJKLMNOPhas been updated.....");
+                            Log.w(TAG, "Record " + rowID + "has been updated.....");
                         else
                             Log.w(TAG, "Record " + rowID + "has not been updated....");
                     } else{
