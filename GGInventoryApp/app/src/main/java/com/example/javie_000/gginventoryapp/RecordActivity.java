@@ -18,7 +18,7 @@ import com.example.javie_000.gginventoryapp.mainDB.*;
 
 import org.w3c.dom.Text;
 
-import sun.rmi.runtime.Log;
+//import sun.rmi.runtime.Log;
 
 public class RecordActivity extends Activity implements AdapterView.OnItemSelectedListener, View.OnClickListener{
 
@@ -65,6 +65,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
+        getActionBar().hide();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         Log.w(TAG, "Record Activity view has been set....");
 
