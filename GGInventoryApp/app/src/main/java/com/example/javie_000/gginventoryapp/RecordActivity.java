@@ -282,7 +282,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
             message = "Added to the inventory.";
         }
         Toast.makeText(RecordActivity.this, message, Toast.LENGTH_SHORT).show();
-        return false;
+        return isValid;
     }
 
     public void onClick(View v){
