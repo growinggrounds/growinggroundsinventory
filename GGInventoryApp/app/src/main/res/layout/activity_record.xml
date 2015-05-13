@@ -49,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/botanicalName"
                     android:id="@+id/TVbotanicalName"
-                    android:layout_weight="1"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
                     android:background="#ffe1e1e1"
@@ -65,22 +64,20 @@
                     android:id="@+id/ViewBotanicalName"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:layout_toRightOf="@+id/TVbotanicalName"
                     android:focusableInTouchMode="true"
                     android:background="#ffe1e1e1"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#000"
-                    android:layout_alignBottom="@+id/TVbotanicalName"
                     android:textSize="50sp"
-                    android:layout_margin="2dp" />
-
+                    android:layout_margin="2dp"
+                    android:layout_toRightOf="@+id/TVbotanicalName" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/commonName"
                     android:id="@+id/TVcommonName"
-                    android:layout_below="@+id/ViewBotanicalName"
+                    android:layout_below="@+id/TVbotanicalName"
                     android:layout_alignRight="@+id/TVbotanicalName"
                     android:layout_alignLeft="@+id/TVbotanicalName"
                     android:background="#ffe1e1e1"
@@ -377,7 +374,73 @@
                     android:layout_margin="2dp"
                     android:layout_alignLeft="@+id/ViewBotanicalName" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/required"
+                    android:id="@+id/required_size"
+                    android:background="#ffe1e1e1"
+                    android:focusableInTouchMode="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ff0000"
+                    android:textSize="50sp"
+                    android:layout_alignBaseline="@id/TVsize"
+                    android:layout_alignRight="@+id/TVsize" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/required"
+                    android:id="@+id/required_quality"
+                    android:background="#ffe1e1e1"
+                    android:focusableInTouchMode="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ff0000"
+                    android:textSize="50sp"
+                    android:layout_alignBaseline="@id/TVquality"
+                    android:layout_alignRight="@+id/TVquality"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/required"
+                    android:id="@+id/required_numAvail"
+                    android:background="#ffe1e1e1"
+                    android:focusableInTouchMode="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ff0000"
+                    android:textSize="50sp"
+                    android:layout_above="@+id/TVnotes"
+                    android:layout_alignRight="@+id/TVnumAvail"
+                    android:layout_alignBaseline="@id/TVnumAvail"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/required"
+                    android:id="@+id/required_location"
+                    android:background="#ffe1e1e1"
+                    android:focusableInTouchMode="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ff0000"
+                    android:textSize="50sp"
+                    android:layout_above="@+id/TVprice"
+                    android:layout_alignRight="@+id/TVlocation"
+                    android:layout_alignEnd="@+id/TVlocation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/required"
+                    android:id="@+id/required_price"
+                    android:background="#ffe1e1e1"
+                    android:focusableInTouchMode="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ff0000"
+                    android:textSize="50sp"
+                    android:layout_below="@+id/TVlocation"
+                    android:layout_alignRight="@+id/TVprice"
+                    android:layout_alignEnd="@+id/TVprice" />
 
             </RelativeLayout>
         </ScrollView>

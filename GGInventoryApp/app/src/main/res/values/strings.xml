@@ -16,7 +16,7 @@
     <string name="scan_item">Scan Barcode to Add/Update</string>
     <string name="search_button">Search</string>
     <string name="clearAll_button">Clear Entire List</string>
-    <string name="backToList_button">Back to Availability List</string>
+    <string name="backToList_button">&#8592;\ Back to Availability List</string>
     <string name="record_title">Record</string>
     <string name="save_button">Save</string>
     <string name="delete_button">Delete</string>
@@ -28,26 +28,31 @@
     <string name="pictureSuccess">The picture was taken Successfully</string>
     <string name="pictureFail">Error taking or saving the picture</string>
     <string name="id">ID</string>
-    <string name="qty">* Quantity: </string>
-    <string name="size">* Size: </string>
-    <string name="numAvail">* Number Available: </string>
+    <string name="qty">Quantity: </string>
+    <string name="size">Size: </string>
+    <string name="numAvail">Number Available: </string>
     <string name="botanicalName">Botanical Name: </string>
     <string name="commonName">Common Name: </string>
     <string name="details">Details: </string>
     <string name="notes">Notes: </string>
     <string name="type1">Type 1: </string>
     <string name="type2">Type 2: </string>
-    <string name="quality">* Quality: </string>
-    <string name="location">* Location: </string>
+    <string name="quality">Quality: </string>
+    <string name="location">Location: </string>
     <string name="price">Price: </string>
     <string name="addUpdate">Add/Update</string>
     <string name="droughtTolerant">Drought Tolerant</string>
     <string name="title_activity_avail_list">AvailListActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_record">RecordActivity</string>
+
     <string name="positive">Yes</string>
     <string name="negative">No</string>
-    
+    <string name="neutral">OK</string>
+
+    <string name="empty_entry">Empty Entry</string>
+    <string name="error_scanner_input">Must get input from scanner!</string>
+
     <string name="title_delete_entry">Delete Entry</string>
     <string name="confirm_delete_entry">Are you sure you want to delete this entry?</string>
     <string name="validation_size">A valid size is required.</string>
@@ -56,4 +61,6 @@
     <string name="validation_location">Location must be specified.</string>
     <string name="validation_price">Price must be greater than $0.00.</string>
     <string name="validation_success">Added to the inventory.</string>
+
+    <string name="required">*</string>
 </resources>

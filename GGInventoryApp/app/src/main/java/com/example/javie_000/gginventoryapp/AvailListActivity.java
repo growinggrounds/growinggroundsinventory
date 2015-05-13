@@ -125,9 +125,9 @@ public class AvailListActivity extends Activity {
             public void onClick(View view) {
                 if (scanBarcode.getText().length() == 0) {
                     new AlertDialog.Builder(AvailListActivity.this)
-                            .setTitle("Empty Entry")
-                            .setMessage("Must get input from scanner!")
-                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                            .setTitle(getString(R.string.empty_entry))
+                            .setMessage(getString(R.string.error_scanner_input))
+                            .setNeutralButton(getString(R.string.neutral), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
 
