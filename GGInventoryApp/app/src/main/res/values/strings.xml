@@ -45,5 +45,15 @@
     <string name="title_activity_avail_list">AvailListActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_record">RecordActivity</string>
-
+    <string name="positive">Yes</string>
+    <string name="negative">No</string>
+    
+    <string name="title_delete_entry">Delete Entry</string>
+    <string name="confirm_delete_entry">Are you sure you want to delete this entry?</string>
+    <string name="validation_size">A valid size is required.</string>
+    <string name="validation_numAvail">Number available must be 0 or greater.</string>
+    <string name="validation_quality">Quality must be specified.</string>
+    <string name="validation_location">Location must be specified.</string>
+    <string name="validation_price">Price must be greater than $0.00.</string>
+    <string name="validation_success">Added to the inventory.</string>
 </resources>

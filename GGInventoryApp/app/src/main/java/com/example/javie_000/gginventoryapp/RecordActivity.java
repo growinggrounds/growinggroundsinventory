@@ -97,7 +97,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Closing Activity")
                 .setMessage("Are you sure you want to go back without saving?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                .setPositiveButton(this.getString(R.string.positive), new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -105,7 +105,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                     }
 
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(this.getString(R.string.negative), null)
                 .show();
     }
 
@@ -263,23 +263,23 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         boolean isValid = false;
         String message;
         if (size.isEmpty()) {
-            message = "A valid size is required.";
+            message = getString(R.string.validation_size);
         }
-        else if (numAvail <= 0) {
-            message = "Number available must be 0 or greater.";
+        else if (numAvail < 0) {
+            message = getString(R.string.validation_numAvail);
         }
         else if (quality.isEmpty()) {
-            message = "Quality is required.";
+            message = getString(R.string.validation_quality);
         }
         else if (location.isEmpty()) {
-            message = "Location must be specified.";
+            message = getString(R.string.validation_location);
         }
-        else if (price == 0) {
-            message = "Price must be greater than 0.00.";
+        else if (price <= 0) {
+            message = getString(R.string.validation_price);
         }
         else {
             isValid = true;
-            message = "Added to the inventory.";
+            message = getString(R.string.validation_success);
         }
         Toast.makeText(RecordActivity.this, message, Toast.LENGTH_SHORT).show();
         return isValid;
@@ -327,9 +327,9 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                 break;
             case R.id.deleteButton:
                 new AlertDialog.Builder(RecordActivity.this)
-                        .setTitle("Delete Entry")
-                        .setMessage("Are you sure you want to delete this entry?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(getString(R.string.title_delete_entry))
+                        .setMessage(getString(R.string.confirm_delete_entry))
+                        .setPositiveButton(this.getString(R.string.positive), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Log.w(TAG, "delete Button pressed......");
@@ -343,7 +343,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                                 finish();
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(this.getString(R.string.negative), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
