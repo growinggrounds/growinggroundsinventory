@@ -478,8 +478,7 @@
                 android:textSize="40sp"
                 android:textColor="#fff"
                 android:text="@string/delete_button"
-                android:layout_marginLeft="2dp"
-                android:typeface="serif" />
+                android:layout_marginLeft="2dp" />
 
         </LinearLayout>
     </RelativeLayout>
