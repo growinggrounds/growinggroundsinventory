@@ -76,14 +76,14 @@
 
             <Button
                 android:id="@+id/sync_master_db_button"
-                android:background="#ff696969"
-                android:text="@string/sync_master_db_button"
+                android:background="#0000ff"
+                android:text="@string/downloadcsv"
                 style = "@style/ButtonText"
                 android:layout_width="500dp"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
                 android:textSize="50sp"
-                android:textColor="#000000"
+                android:textColor="#fff"
                 android:typeface="sans" />
         </LinearLayout>
 
