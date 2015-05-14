@@ -52,7 +52,7 @@
             android:typeface="serif" />
     </LinearLayout>
 
-    <LinearLayout
+    <!--LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
@@ -72,7 +72,7 @@
             android:textSize="30sp"
             android:text="@string/clearAll_button"
             android:typeface="serif" />
-    </LinearLayout>
+    </LinearLayout-->
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/listView"

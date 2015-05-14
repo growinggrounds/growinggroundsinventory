@@ -26,7 +26,8 @@ public class AvailListActivity extends Activity {
     private weeklyDB db;
     private SimpleCursorAdapter dataAdapter;
     private EditText scanBarcode;
-    private Button searchButton, clearAllButton;
+    private Button searchButton;
+    //private Button clearAllButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,8 +117,8 @@ public class AvailListActivity extends Activity {
         });
 
         searchButton = (Button)findViewById(R.id.searchButton);
-        clearAllButton = (Button)findViewById(R.id.clearAllButton);
-        clearAllButton.setVisibility(View.GONE);
+        /*clearAllButton = (Button)findViewById(R.id.clearAllButton);
+        clearAllButton.setVisibility(View.GONE);*/
         scanBarcode = (EditText)findViewById(R.id.scanBarcodeEditText);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -125,9 +126,9 @@ public class AvailListActivity extends Activity {
             public void onClick(View view) {
                 if (scanBarcode.getText().length() == 0) {
                     new AlertDialog.Builder(AvailListActivity.this)
-                            .setTitle("Empty Entry")
-                            .setMessage("Must get input from scanner!")
-                            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                            .setTitle(getString(R.string.empty_entry))
+                            .setMessage(getString(R.string.error_scanner_input))
+                            .setNeutralButton(getString(R.string.neutral), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -148,7 +149,7 @@ public class AvailListActivity extends Activity {
             }
         });
 
-        clearAllButton.setOnClickListener(new View.OnClickListener() {
+        /*clearAllButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Log.w(TAG, "clearAll Button pressed....");
                 db.deleteAllRecords();
@@ -158,6 +159,6 @@ public class AvailListActivity extends Activity {
                 finish();
                 startActivity(getIntent());
             }
-        });
+        });*/
     }
 }
