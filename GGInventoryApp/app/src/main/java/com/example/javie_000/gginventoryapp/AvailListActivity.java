@@ -17,6 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.text.TextWatcher;
 import android.text.Editable;
 import java.util.ArrayList;
+import android.widget.FilterQueryProvider;
 
 import com.example.javie_000.gginventoryapp.inventoryDB.weeklyDB;
 
@@ -53,6 +54,17 @@ public class AvailListActivity extends Activity {
         scanBarcode.setText("");
         displayListView();
     }
+
+    public Cursor getList (CharSequence constraint)  {
+        if (constraint == null || constraint.length() == 0) {
+            return db.getAllRecords();
+        }
+        else {
+            String value = "%"+constraint.toString()+"%";
+            return db.query(weeklyDB.TABLE_NAME, weeklyDB.ALL_KEYS, "_botanicalName like ? ", new String[]{value}, null, null, null);
+        }
+    }
+
 
     private void displayListView(){
         Cursor cursor;
@@ -92,6 +104,8 @@ public class AvailListActivity extends Activity {
         listView = (ListView) findViewById(R.id.listView);
         // Assign adapter to ListView
         listView.setAdapter(dataAdapter);
+        listView.setTextFilterEnabled(true);
+        listView.setFastScrollEnabled(true);
         Log.w(TAG, "ListView dataAdapter has been set....");
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -120,6 +134,26 @@ public class AvailListActivity extends Activity {
         /*clearAllButton = (Button)findViewById(R.id.clearAllButton);
         clearAllButton.setVisibility(View.GONE);*/
         scanBarcode = (EditText)findViewById(R.id.scanBarcodeEditText);
+        scanBarcode.addTextChangedListener(new TextWatcher() {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable s) {
+                ListView av = (ListView) findViewById(R.id.listView);
+                SimpleCursorAdapter filterAdapter = (SimpleCursorAdapter)av.getAdapter();
+                filterAdapter.getFilter().filter(s.toString());
+            }
+        });
+
+        dataAdapter.setFilterQueryProvider(new FilterQueryProvider() {
+            @Override
+            public Cursor runQuery(CharSequence constraint) {
+                return getList(constraint);
+            }
+        });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
