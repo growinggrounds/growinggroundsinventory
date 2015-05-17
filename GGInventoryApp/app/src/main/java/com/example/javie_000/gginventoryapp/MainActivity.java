@@ -1,22 +1,28 @@
 package com.example.javie_000.gginventoryapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.javie_000.gginventoryapp.inventoryDB.weeklyDB;
 import com.example.javie_000.gginventoryapp.mainDB.*;
 
 import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity {
+
+    private Button downloadButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,29 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
+        Button downloadButton = (Button)findViewById(R.id.sync_master_db_button);
+        downloadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                weeklyDB dbWeekly;
+                dbWeekly = new weeklyDB(getApplicationContext());
+                dbWeekly.open();
+                dbWeekly.exportCSV("weeklyinventory.csv");
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("CSV Export Success!")
+                        .setMessage("Exported to /GrowingGroundsWeekly/weeklyinventory.csv")
+                        .setNeutralButton(getString(R.string.neutral), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        })
+                        .show();
+
+            }
+        });
         /**
         btnDatabaseSync.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
