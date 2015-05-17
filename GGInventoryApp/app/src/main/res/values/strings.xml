@@ -13,8 +13,8 @@
     <string name="dump_database">Dump Database</string>
     <string name="sync_avail_list_button">Sync List to PC</string>
     <string name="sync_master_db_button">Sync Master DB</string>
-    <string name="scan_item">Scan Barcode to Add/Update</string>
-    <string name="search_button">Search</string>
+    <string name="scan_item">Scan Barcode to Search Database</string>
+    <string name="search_button">Add to List</string>
     <string name="clearAll_button">Clear Entire List</string>
     <string name="backToList_button">&#8592;\ Back to Availability List</string>
     <string name="record_title">Record</string>
