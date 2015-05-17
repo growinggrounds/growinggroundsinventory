@@ -49,7 +49,7 @@
             style = "@style/ButtonText"
             android:textSize="30sp"
             android:text="@string/search_button"
-            android:typeface="serif" />
+            android:typeface="sans" />
     </LinearLayout>
 
     <!--LinearLayout

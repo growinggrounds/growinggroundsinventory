@@ -7,10 +7,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteException;
+import android.os.Environment;
 import android.util.Log;
 import android.webkit.WebChromeClient;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -181,6 +185,74 @@ public class weeklyDB {
             cursor.moveToFirst();
 
         return cursor;
+    }
+
+    // Export as CSV
+    public Boolean exportCSV(String outputFileName) {
+        Cursor wholeDB = getAllRecords();
+        Log.w(TAG, "Exporting database to CSV...");
+        Boolean returnVal = false;
+
+        File fileExpRoot = Environment.getExternalStorageDirectory();
+        Log.w(TAG, "Storing CSV in " + fileExpRoot.getAbsolutePath());
+
+            File fileDir = new File(fileExpRoot.getAbsolutePath() + "/GrowingGroundsWeekly/");
+            fileDir.mkdirs();
+
+        int i = 0;
+
+        String csvHeader = "";
+        String csvValues = "";
+
+        for (i = 0; i < ALL_KEYS.length; i++) {
+            if (csvHeader.length() > 0) {
+                csvHeader += ",";
+            }
+            csvHeader += "\"" + ALL_KEYS[i] + "\"";
+        }
+
+        csvHeader += "\n";
+        Log.w(TAG, "CSV header = " + csvHeader);
+
+            try {
+
+                File outFile = new File(fileDir, outputFileName);
+                FileWriter fileWriter = new FileWriter(outFile);
+
+                BufferedWriter out = new BufferedWriter(fileWriter);
+                Cursor cursor = getAllRecords();
+                if (cursor != null) {
+                    out.write(csvHeader);
+                    while (cursor.moveToNext()) {
+                        csvValues = Long.toString(cursor.getLong(0)) + ",";
+                        csvValues += Double.toString(cursor.getDouble(1))
+                                + ",";
+                        csvValues += Double.toString(cursor.getDouble(2))
+                                + ",";
+                        csvValues += "\"" + cursor.getString(3) + "\",";
+                        csvValues += Double.toString(cursor.getDouble(4))
+                                + ",";
+                        csvValues += Double.toString(cursor.getDouble(5))
+                                + ",";
+                        csvValues += "\"" + cursor.getString(6) + "\",";
+                        csvValues += Double.toString(cursor.getDouble(7))
+                                + ",";
+                        csvValues += Double.toString(cursor.getDouble(8))
+                                + ",";
+                        csvValues += Double.toString(cursor.getDouble(9))
+                                + "\n";
+                        out.write(csvValues);
+                    }
+                    cursor.close();
+                }
+                out.close();
+                returnVal = true;
+            } catch (IOException e) {
+                returnVal = false;
+                Log.w(TAG, "IOException: " + e.getMessage());
+            }
+
+        return returnVal;
     }
 
     // Change an existing record to new record
