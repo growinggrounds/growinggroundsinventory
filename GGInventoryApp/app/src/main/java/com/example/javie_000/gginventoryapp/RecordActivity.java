@@ -142,12 +142,21 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
     }
 
     private void AddWithMasterDB(){
+        String message;
+
         // Create a new empty WeeklyRecord
         record = new WeeklyRecord();
         dbMaster = new masterDB(this);
         dbMaster.open();
         Log.w(TAG, "Master DB has been opened....");
         Cursor cursor = dbMaster.getRecord(tagName);
+
+/*        if(cursor == null || cursor.getCount() == 0) {
+            message = "Inventory does not contain " + tagName;
+            Toast.makeText(RecordActivity.this, message, Toast.LENGTH_SHORT).show();
+            return;
+        }*/
+
         Log.w(TAG, "TagName " + tagName + " has been retrieved from masterDB");
         dbMaster.close();
         Log.w(TAG, "Master DB has been closed....");

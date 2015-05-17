@@ -17,8 +17,11 @@ import android.widget.SimpleCursorAdapter;
 import android.text.TextWatcher;
 import android.text.Editable;
 import java.util.ArrayList;
+import android.widget.FilterQueryProvider;
+import android.widget.Toast;
 
 import com.example.javie_000.gginventoryapp.inventoryDB.weeklyDB;
+import com.example.javie_000.gginventoryapp.mainDB.masterDB;
 
 public class AvailListActivity extends Activity {
 
@@ -53,6 +56,17 @@ public class AvailListActivity extends Activity {
         scanBarcode.setText("");
         displayListView();
     }
+
+    public Cursor getList (CharSequence constraint)  {
+        if (constraint == null || constraint.length() == 0) {
+            return db.getAllRecords();
+        }
+        else {
+            String value = "%"+constraint.toString()+"%";
+            return db.query(weeklyDB.TABLE_NAME, weeklyDB.ALL_KEYS, "_botanicalName like ? ", new String[]{value}, null, null, null);
+        }
+    }
+
 
     private void displayListView(){
         Cursor cursor;
@@ -92,6 +106,8 @@ public class AvailListActivity extends Activity {
         listView = (ListView) findViewById(R.id.listView);
         // Assign adapter to ListView
         listView.setAdapter(dataAdapter);
+        listView.setTextFilterEnabled(true);
+        listView.setFastScrollEnabled(true);
         Log.w(TAG, "ListView dataAdapter has been set....");
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -120,23 +136,46 @@ public class AvailListActivity extends Activity {
         /*clearAllButton = (Button)findViewById(R.id.clearAllButton);
         clearAllButton.setVisibility(View.GONE);*/
         scanBarcode = (EditText)findViewById(R.id.scanBarcodeEditText);
+        scanBarcode.addTextChangedListener(new TextWatcher() {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable s) {
+                ListView av = (ListView) findViewById(R.id.listView);
+                SimpleCursorAdapter filterAdapter = (SimpleCursorAdapter) av.getAdapter();
+                filterAdapter.getFilter().filter(s.toString());
+            }
+        });
+
+        dataAdapter.setFilterQueryProvider(new FilterQueryProvider() {
+            @Override
+            public Cursor runQuery(CharSequence constraint) {
+                return getList(constraint);
+            }
+        });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (scanBarcode.getText().length() == 0) {
-                    new AlertDialog.Builder(AvailListActivity.this)
-                            .setTitle(getString(R.string.empty_entry))
-                            .setMessage(getString(R.string.error_scanner_input))
-                            .setNeutralButton(getString(R.string.neutral), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                String message;
+                masterDB dbMaster;
 
-                                }
-                            })
-                            .show();
-                }
-                else {
+                dbMaster = new masterDB(AvailListActivity.this);
+                dbMaster.open();
+                Log.w(TAG, "Master DB has been opened....");
+                Cursor cursor = dbMaster.getRecord(scanBarcode.getText().toString());
+
+                if (scanBarcode.getText().length() == 0) {
+                    message = "Empty entry, must get input from scanner!";
+                    Toast.makeText(AvailListActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                } else if (cursor == null || cursor.getCount() == 0) {
+                    message = "Inventory does not contain " + scanBarcode.getText().toString();
+                    Toast.makeText(AvailListActivity.this, message, Toast.LENGTH_SHORT).show();
+                } else {
                     Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
                     // Send the scanned rowID to recordScreen
                     //intent.putExtra("sentValue", Integer.parseInt(scanBarcode.getText().toString()));
@@ -148,6 +187,7 @@ public class AvailListActivity extends Activity {
                 }
             }
         });
+
 
         /*clearAllButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {

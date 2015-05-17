@@ -166,7 +166,7 @@ public class masterDB {
         Cursor cursor = db.query(true, TABLE_NAME, ALL_KEYS,
                 whereClause, null, null, null, null, null);
 
-        if(cursor != null){
+        if(cursor.getCount() != 0) {
             cursor.moveToFirst();
         }
         return cursor;

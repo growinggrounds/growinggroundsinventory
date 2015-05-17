@@ -277,5 +277,14 @@ public class weeklyDB {
         // Insert new record into the database
         return db.update(TABLE_NAME, values, whereClause, null) != 0;
     }
+
+    public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
+        Cursor cursor = db.query(true, TABLE_NAME, ALL_KEYS, selection,
+                selectionArgs, null, null, KEY_BOTANICALNAME, null);
+        if(cursor != null)
+            cursor.moveToFirst();
+
+        return cursor;
+    }
 }
 
