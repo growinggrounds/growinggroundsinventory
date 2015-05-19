@@ -224,23 +224,11 @@ public class weeklyDB {
                 if (cursor != null) {
                     out.write(csvHeader);
                     while (cursor.moveToNext()) {
-                        csvValues = Long.toString(cursor.getLong(0)) + ",";
-                        csvValues += Double.toString(cursor.getDouble(1))
-                                + ",";
-                        csvValues += Double.toString(cursor.getDouble(2))
-                                + ",";
-                        csvValues += "\"" + cursor.getString(3) + "\",";
-                        csvValues += Double.toString(cursor.getDouble(4))
-                                + ",";
-                        csvValues += Double.toString(cursor.getDouble(5))
-                                + ",";
-                        csvValues += "\"" + cursor.getString(6) + "\",";
-                        csvValues += Double.toString(cursor.getDouble(7))
-                                + ",";
-                        csvValues += Double.toString(cursor.getDouble(8))
-                                + ",";
-                        csvValues += Double.toString(cursor.getDouble(9))
-                                + "\n";
+                        csvValues = "";
+                        for (i = 0; i < ALL_KEYS.length; i++) {
+                            csvValues += cursor.getString(i) + ",";
+                        }
+                        csvValues += "\n";
                         out.write(csvValues);
                     }
                     cursor.close();
