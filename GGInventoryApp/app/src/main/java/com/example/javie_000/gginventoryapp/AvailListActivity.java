@@ -82,7 +82,8 @@ public class AvailListActivity extends Activity {
                 weeklyDB.KEY_NUMAVAIL,
                 weeklyDB.KEY_SIZE,
                 weeklyDB.KEY_QUALITY,
-                weeklyDB.KEY_DETAILS
+                weeklyDB.KEY_DETAILS,
+                weeklyDB.KEY_LOCATION
         };
 
         // The XML defined views which the data will be bound to
@@ -91,7 +92,8 @@ public class AvailListActivity extends Activity {
                 R.id.listRowQuantity,
                 R.id.listRowSize,
                 R.id.listRowQuality,
-                R.id.listRowDetails
+                R.id.listRowDetails,
+                R.id.listRowLocation
         };
 
         // Create the adapter using the cursor pointing to the desired data as well as the
