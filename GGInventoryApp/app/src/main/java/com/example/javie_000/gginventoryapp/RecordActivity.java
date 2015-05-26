@@ -283,9 +283,9 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         else if (location.isEmpty()) {
             message = getString(R.string.validation_location);
         }
-        else if (price <= 0) {
+        /*else if (price <= 0) {
             message = getString(R.string.validation_price);
-        }
+        }*/
         else {
             isValid = true;
             message = getString(R.string.validation_success);

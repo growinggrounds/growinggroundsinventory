@@ -431,20 +431,6 @@
                     android:layout_alignRight="@+id/TVlocation"
                     android:layout_alignEnd="@+id/TVlocation" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/required"
-                    android:id="@+id/required_price"
-                    android:background="#ffe1e1e1"
-                    android:focusableInTouchMode="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#ff0000"
-                    android:textSize="50sp"
-                    android:layout_below="@+id/TVlocation"
-                    android:layout_alignRight="@+id/TVprice"
-                    android:layout_alignEnd="@+id/TVprice" />
-
             </RelativeLayout>
         </ScrollView>
 
