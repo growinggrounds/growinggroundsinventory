@@ -16,8 +16,6 @@ import android.content.DialogInterface;
 import com.example.javie_000.gginventoryapp.inventoryDB.*;
 import com.example.javie_000.gginventoryapp.mainDB.*;
 
-import org.w3c.dom.Text;
-
 //import sun.rmi.runtime.Log;
 
 public class RecordActivity extends Activity implements AdapterView.OnItemSelectedListener, View.OnClickListener{
@@ -31,8 +29,8 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
     private boolean fromBarcode;
 
     private TextView ViewBotanicalName, ViewCommonName, ViewType1, ViewType2, ETprice;
-    private EditText ETnumAvail, ETdetails;
-    private Spinner SpinnerSize, SpinnerNotes, SpinnerQuality, SpinnerLocation;
+    private EditText ETnumAvail;
+    private Spinner SpinnerSize, SpinnerNotes, SpinnerQuality, SpinnerLocation, SpinnerDetails;
     private Button saveButton, deleteButton, backToListButton;
 
     // weeklyDB column numbers
@@ -183,7 +181,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         ViewCommonName = (TextView)findViewById(R.id.ViewCommonName);
         SpinnerSize = (Spinner)findViewById(R.id.SpinnerSize);
         ETnumAvail = (EditText)findViewById(R.id.ETnumAvail);
-        ETdetails = (EditText)findViewById(R.id.ETdetails);
+        SpinnerDetails = (Spinner)findViewById(R.id.ETdetails);
         SpinnerNotes = (Spinner)findViewById(R.id.SpinnerNotes);
         ViewType1 = (TextView)findViewById(R.id.ViewType1);
         ViewType2 = (TextView)findViewById(R.id.ViewType2);
@@ -199,7 +197,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         ViewBotanicalName.setText(record.botanicalName);
         ViewCommonName.setText(record.commonName);
         ETnumAvail.setText(Integer.toString(record.numAvail));
-        ETdetails.setText(record.details);
+        /*SpinnerDetails.setText(record.details);*/
         ViewType1.setText(record.type1);
         ViewType2.setText(record.type2);
         ETprice.setText(Double.toString(record.price));
@@ -232,11 +230,19 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         int spinnerLocationPosition = locationAdapter.getPosition(record.location);
         SpinnerLocation.setSelection(spinnerLocationPosition);
 
+        // Details Spinner
+        ArrayAdapter<CharSequence> detailAdapter = ArrayAdapter.createFromResource(this, R.array.details, android.R.layout.simple_spinner_item);
+        detailAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinnerDetails.setAdapter(detailAdapter);
+        int etDetailsPosition = detailAdapter.getPosition(record.details);
+        SpinnerDetails.setSelection(etDetailsPosition);
+
         // Set up Spinner Listeners
         SpinnerSize.setOnItemSelectedListener(this);
         SpinnerNotes.setOnItemSelectedListener(this);
         SpinnerQuality.setOnItemSelectedListener(this);
         SpinnerLocation.setOnItemSelectedListener(this);
+        SpinnerDetails.setOnItemSelectedListener(this);
 
         // Set up Button Listeners
         saveButton.setOnClickListener(this);
@@ -301,7 +307,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
             case R.id.saveButton:
                 String size = SpinnerSize.getSelectedItem().toString();
                 int numAvail = Integer.parseInt(ETnumAvail.getText().toString());
-                String details = ETdetails.getText().toString();
+                String details = SpinnerDetails.getSelectedItem().toString();
                 String notes = SpinnerNotes.getSelectedItem().toString();
                 String quality = SpinnerQuality.getSelectedItem().toString();
                 String location = SpinnerLocation.getSelectedItem().toString();
@@ -311,7 +317,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
 
                     record.size = SpinnerSize.getSelectedItem().toString();
                     record.numAvail = Integer.parseInt(ETnumAvail.getText().toString());
-                    record.details = ETdetails.getText().toString();
+                    record.details = SpinnerDetails.getSelectedItem().toString();
                     record.notes = SpinnerNotes.getSelectedItem().toString();
                     record.quality = SpinnerQuality.getSelectedItem().toString();
                     record.location = SpinnerLocation.getSelectedItem().toString();
