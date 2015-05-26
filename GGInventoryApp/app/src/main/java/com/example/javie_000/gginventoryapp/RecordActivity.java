@@ -30,8 +30,8 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
     private String tagName;
     private boolean fromBarcode;
 
-    private TextView ViewBotanicalName, ViewCommonName, ViewType1, ViewType2;
-    private EditText ETnumAvail, ETdetails, ETprice;
+    private TextView ViewBotanicalName, ViewCommonName, ViewType1, ViewType2, ETprice;
+    private EditText ETnumAvail, ETdetails;
     private Spinner SpinnerSize, SpinnerNotes, SpinnerQuality, SpinnerLocation;
     private Button saveButton, deleteButton, backToListButton;
 
@@ -189,7 +189,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         ViewType2 = (TextView)findViewById(R.id.ViewType2);
         SpinnerQuality = (Spinner)findViewById(R.id.SpinnerQuality);
         SpinnerLocation = (Spinner)findViewById(R.id.SpinnerLocation);
-        ETprice = (EditText)findViewById(R.id.ETprice);
+        ETprice = (TextView)findViewById(R.id.ETprice);
 
         saveButton = (Button)findViewById(R.id.saveButton);
         deleteButton = (Button)findViewById(R.id.deleteButton);
@@ -283,9 +283,9 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         else if (location.isEmpty()) {
             message = getString(R.string.validation_location);
         }
-        else if (price <= 0) {
+        /*else if (price <= 0) {
             message = getString(R.string.validation_price);
-        }
+        }*/
         else {
             isValid = true;
             message = getString(R.string.validation_success);

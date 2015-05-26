@@ -359,8 +359,7 @@
                     android:textColor="#000"
                     android:textSize="50sp"
                     android:layout_margin="2dp" />
-
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/ETprice"
@@ -368,13 +367,11 @@
                     android:layout_below="@id/SpinnerLocation"
                     android:layout_alignRight="@+id/ViewBotanicalName"
                     android:focusableInTouchMode="true"
-                    android:background="@drawable/outlined_shape"
+                    android:background="#ffe1e1e1"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#000"
                     android:textSize="50sp"
-                    android:inputType="numberDecimal"
                     android:layout_margin="2dp"
-                    android:paddingLeft="8dp"
                     android:layout_alignLeft="@+id/ViewBotanicalName" />
 
                 <TextView
@@ -430,20 +427,6 @@
                     android:layout_above="@+id/TVprice"
                     android:layout_alignRight="@+id/TVlocation"
                     android:layout_alignEnd="@+id/TVlocation" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/required"
-                    android:id="@+id/required_price"
-                    android:background="#ffe1e1e1"
-                    android:focusableInTouchMode="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#ff0000"
-                    android:textSize="50sp"
-                    android:layout_below="@+id/TVlocation"
-                    android:layout_alignRight="@+id/TVprice"
-                    android:layout_alignEnd="@+id/TVprice" />
 
             </RelativeLayout>
         </ScrollView>

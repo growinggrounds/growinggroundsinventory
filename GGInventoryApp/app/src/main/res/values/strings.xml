@@ -40,6 +40,8 @@
     <string name="quality">Quality: </string>
     <string name="location">Location: </string>
     <string name="price">Price: </string>
+    <string name="quantity">Quantity: </string>
+
     <string name="addUpdate">Add/Update</string>
     <string name="droughtTolerant">Drought Tolerant</string>
     <string name="title_activity_avail_list">AvailListActivity</string>
