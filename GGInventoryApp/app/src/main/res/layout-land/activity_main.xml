@@ -74,12 +74,14 @@
             android:gravity="right">
 
             <Button
-                android:id="@+id/sync_master_db_button"
-                android:background="#0000ff"
-                android:text="@string/downloadcsv"
+                android:id="@+id/sync_avail_list_button"
+                android:background="#ff696969"
+                android:text="@string/sync_master_db_button"
                 style = "@style/ButtonText"
                 android:layout_width="500dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
                 android:fontFamily="sans-serif"
                 android:textSize="50sp"
                 android:textColor="#fff"
@@ -94,19 +96,19 @@
             android:gravity="left">
 
             <Button
-                android:id="@+id/sync_avail_list_button"
-                android:background="#ff696969"
-                android:text="@string/sync_avail_list_button"
+                android:id="@+id/sync_master_db_button"
+                android:background="#0000ff"
+                android:text="@string/downloadcsv"
                 style = "@style/ButtonText"
                 android:layout_width="500dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
                 android:fontFamily="sans-serif"
                 android:textSize="50sp"
                 android:textColor="#fff"
                 android:typeface="sans" />
         </LinearLayout>
+
+
 
     </LinearLayout>
 

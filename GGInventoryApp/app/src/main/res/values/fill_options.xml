@@ -14,10 +14,11 @@
 
     <string-array name="size">
         <item> </item>
-        <item>4</item>
+        <item>4\"</item>
+        <item>squat 5</item>
         <item>1 gal</item>
         <item>2 gal</item>
-        <item>3/4 gal</item>
+        <item>3 gal</item>
         <item>5 gal</item>
         <item>15 gal</item>
     </string-array>
