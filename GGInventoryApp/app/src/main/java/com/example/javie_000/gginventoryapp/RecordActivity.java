@@ -181,7 +181,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         ViewCommonName = (TextView)findViewById(R.id.ViewCommonName);
         SpinnerSize = (Spinner)findViewById(R.id.SpinnerSize);
         ETnumAvail = (EditText)findViewById(R.id.ETnumAvail);
-        SpinnerDetails = (Spinner)findViewById(R.id.ETdetails);
+        SpinnerDetails = (Spinner)findViewById(R.id.SpinnerDetails);
         SpinnerNotes = (Spinner)findViewById(R.id.SpinnerNotes);
         ViewType1 = (TextView)findViewById(R.id.ViewType1);
         ViewType2 = (TextView)findViewById(R.id.ViewType2);
