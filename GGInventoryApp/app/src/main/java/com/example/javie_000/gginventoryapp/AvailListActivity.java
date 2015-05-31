@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,6 +19,7 @@ import android.text.TextWatcher;
 import android.text.Editable;
 import java.util.ArrayList;
 import android.widget.FilterQueryProvider;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.javie_000.gginventoryapp.inventoryDB.weeklyDB;
@@ -31,12 +33,14 @@ public class AvailListActivity extends Activity {
     private EditText scanBarcode;
     private Button searchButton;
     //private Button clearAllButton;
+    private Spinner filter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avail_list);
         getActionBar().hide();
+        setFilter();
         // Hide the keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -50,6 +54,24 @@ public class AvailListActivity extends Activity {
         displayListView();
     }
 
+    private void setFilter() {
+        filter = (Spinner)findViewById(R.id.spinnerFilter);
+        ArrayAdapter<CharSequence> filterAdapter = ArrayAdapter.createFromResource(this, R.array.locationfilter, android.R.layout.simple_spinner_item);
+        filterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filter.setAdapter(filterAdapter);
+        filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                displayListView();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     @Override
     public void onResume() {
         super.onStart();
@@ -59,11 +81,18 @@ public class AvailListActivity extends Activity {
 
     public Cursor getList (CharSequence constraint)  {
         if (constraint == null || constraint.length() == 0) {
-            return db.getAllRecords();
+            String location = "%"+filter.getSelectedItem().toString()+"%";
+            if (filter.getSelectedItemPosition() == 0)
+                return db.getAllRecords();
+            return db.query(weeklyDB.TABLE_NAME, weeklyDB.ALL_KEYS, " _location like ?", new String[]{location}, null, null, null);
         }
         else {
             String value = "%"+constraint.toString()+"%";
-            return db.query(weeklyDB.TABLE_NAME, weeklyDB.ALL_KEYS, "_botanicalName like ? ", new String[]{value}, null, null, null);
+            if (filter.getSelectedItemPosition() == 0)
+                return db.query(weeklyDB.TABLE_NAME, weeklyDB.ALL_KEYS, "_botanicalName like ?", new String[]{value}, null, null, null);
+
+            String location = "%"+filter.getSelectedItem().toString()+"%";
+            return db.query(weeklyDB.TABLE_NAME, weeklyDB.ALL_KEYS, "_location like ? AND _botanicalName like ?", new String[]{location, value}, null, null, null);
         }
     }
 
@@ -73,7 +102,14 @@ public class AvailListActivity extends Activity {
         String[] columns;
         final ListView listView;
 
-        cursor = db.getAllRecords();
+
+        int position = filter.getSelectedItemPosition();
+        String value = filter.getSelectedItem().toString();
+        if (position == 0)
+            cursor = db.getAllRecords();
+        else
+            cursor = db.query(weeklyDB.TABLE_NAME, weeklyDB.ALL_KEYS, "_location like ? ", new String[]{value}, null, null, null);
+
         Log.w(TAG, "All records have been retrieved.....");
 
         // The desired columns to be bound
