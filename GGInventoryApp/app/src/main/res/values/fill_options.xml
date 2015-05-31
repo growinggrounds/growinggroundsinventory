@@ -98,6 +98,26 @@
         <item>Venus</item>
     </string-array>
 
+    <string-array name="locationfilter">
+        <item>All Locations</item>
+        <item>Apollo</item>
+        <item>Atlas</item>
+        <item>Earth</item>
+        <item>Europa</item>
+        <item>Jupiter</item>
+        <item>Mars</item>
+        <item>Mercury</item>
+        <item>Moon</item>
+        <item>Neptune</item>
+        <item>Olive Garden</item>
+        <item>Opportunity</item>
+        <item>Pluto</item>
+        <item>Saturn</item>
+        <item>Spirit</item>
+        <item>Venex</item>
+        <item>Venus</item>
+    </string-array>
+
     <string-array name="quality">
         <item> </item>
         <item>Retail</item>
