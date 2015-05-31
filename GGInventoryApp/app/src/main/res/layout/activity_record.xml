@@ -237,10 +237,10 @@
                     android:textSize="50sp"
                     android:layout_margin="2dp" />
 
-                <EditText
+                <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ETdetails"
+                    android:id="@+id/SpinnerDetails"
                     android:layout_alignBottom="@+id/TVdetails"
                     android:layout_below="@id/SpinnerQuality"
                     android:layout_alignRight="@+id/ViewBotanicalName"
@@ -272,7 +272,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/ETnumAvail"
-                    android:layout_below="@id/ETdetails"
+                    android:layout_below="@id/SpinnerDetails"
                     android:layout_alignBottom="@+id/TVnumAvail"
                     android:layout_alignRight="@+id/ViewBotanicalName"
                     android:focusableInTouchMode="true"
