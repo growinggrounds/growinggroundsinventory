@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <!--Button
             android:layout_weight="1"
             android:id="@+id/backToListButton"
             android:layout_width="fill_parent"
@@ -24,7 +24,7 @@
             android:textSize="40sp"
             android:textColor="#000"
             android:text="@string/backToList_button"
-            android:layout_marginRight="2dp"/>
+            android:layout_marginRight="2dp"/-->
 
     </LinearLayout>
 
@@ -67,6 +67,7 @@
                     android:focusableInTouchMode="true"
                     android:background="#ffe1e1e1"
                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="italic"
                     android:textColor="#000"
                     android:textSize="50sp"
                     android:layout_margin="2dp"
@@ -238,20 +239,55 @@
                     android:layout_margin="2dp" />
 
                 <Spinner
-                    android:layout_width="wrap_content"
+                    android:layout_width="230dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:id="@+id/SpinnerDetails"
                     android:layout_alignBottom="@+id/TVdetails"
-                    android:layout_below="@id/SpinnerQuality"
-                    android:layout_alignRight="@+id/ViewBotanicalName"
                     android:focusableInTouchMode="true"
                     android:background="@drawable/outlined_shape"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#000"
                     android:textSize="50sp"
-                    android:layout_margin="2dp"
                     android:paddingLeft="8dp"
-                    android:layout_alignLeft="@+id/ViewBotanicalName" />
+                    android:layout_alignLeft="@+id/ViewBotanicalName"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_alignTop="@+id/TVdetails" />
+
+                <Spinner
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/SpinnerDetails2"
+                    android:focusableInTouchMode="true"
+                    android:background="@drawable/outlined_shape"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000"
+                    android:textSize="50sp"
+                    android:paddingLeft="8dp"
+                    android:layout_toRightOf="@+id/SpinnerDetails"
+                    android:layout_toEndOf="@+id/SpinnerDetails"
+                    android:layout_alignTop="@+id/SpinnerDetails"
+                    android:layout_alignBottom="@+id/SpinnerDetails" />
+
+                <Spinner
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/SpinnerDetails3"
+                    android:layout_weight="1"
+                    android:focusableInTouchMode="true"
+                    android:background="@drawable/outlined_shape"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000"
+                    android:textSize="50sp"
+                    android:paddingLeft="8dp"
+                    android:layout_alignRight="@+id/ViewBotanicalName"
+                    android:layout_alignEnd="@+id/ViewBotanicalName"
+                    android:layout_alignTop="@+id/SpinnerDetails2"
+                    android:layout_alignBottom="@+id/SpinnerDetails2"
+                    android:layout_toRightOf="@+id/SpinnerDetails2"
+                    android:layout_toEndOf="@+id/SpinnerDetails2" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -359,8 +395,8 @@
                     android:textColor="#000"
                     android:textSize="50sp"
                     android:layout_margin="2dp" />
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/ETprice"
                     android:layout_alignBottom="@+id/TVprice"
@@ -373,6 +409,15 @@
                     android:textSize="50sp"
                     android:layout_margin="2dp"
                     android:layout_alignLeft="@+id/ViewBotanicalName" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="6dp"
+                    android:id="@+id/priceButton"
+                    android:layout_alignRight="@id/ETprice"
+                    android:layout_alignTop="@id/ETprice"
+                    android:text="@string/pricechange" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -427,6 +472,8 @@
                     android:layout_above="@+id/TVprice"
                     android:layout_alignRight="@+id/TVlocation"
                     android:layout_alignEnd="@+id/TVlocation" />
+
+
 
             </RelativeLayout>
         </ScrollView>

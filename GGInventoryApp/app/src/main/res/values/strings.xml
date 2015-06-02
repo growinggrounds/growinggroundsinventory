@@ -65,6 +65,7 @@
     <string name="validation_success">Added to the inventory.</string>
 
     <string name="required">*</string>
+    <string name="pricechange">Change Price</string>
 
     <string name="downloadcsv">Download CSV</string>
 </resources>
