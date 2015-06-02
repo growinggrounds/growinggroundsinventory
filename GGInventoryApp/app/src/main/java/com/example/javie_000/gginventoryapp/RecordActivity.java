@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.*;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.*;
 
 import com.example.javie_000.gginventoryapp.inventoryDB.*;
 import com.example.javie_000.gginventoryapp.mainDB.*;
@@ -28,10 +30,10 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
     private String tagName;
     private boolean fromBarcode;
 
-    private TextView ViewBotanicalName, ViewCommonName, ViewType1, ViewType2, ETprice;
-    private EditText ETnumAvail;
-    private Spinner SpinnerSize, SpinnerNotes, SpinnerQuality, SpinnerLocation, SpinnerDetails;
-    private Button saveButton, deleteButton, backToListButton;
+    private TextView ViewBotanicalName, ViewCommonName, ViewType1, ViewType2;
+    private EditText ETnumAvail, ETprice;
+    private Spinner SpinnerSize, SpinnerNotes, SpinnerQuality, SpinnerLocation, SpinnerDetails, SpinnerDetails2, SpinnerDetails3;
+    private Button saveButton, deleteButton, priceButton;
 
     // weeklyDB column numbers
     private static final int W_ROWID = 0;
@@ -182,16 +184,20 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         SpinnerSize = (Spinner)findViewById(R.id.SpinnerSize);
         ETnumAvail = (EditText)findViewById(R.id.ETnumAvail);
         SpinnerDetails = (Spinner)findViewById(R.id.SpinnerDetails);
+        SpinnerDetails2 = (Spinner)findViewById(R.id.SpinnerDetails2);
+        SpinnerDetails3 = (Spinner) findViewById(R.id.SpinnerDetails3);
         SpinnerNotes = (Spinner)findViewById(R.id.SpinnerNotes);
         ViewType1 = (TextView)findViewById(R.id.ViewType1);
         ViewType2 = (TextView)findViewById(R.id.ViewType2);
         SpinnerQuality = (Spinner)findViewById(R.id.SpinnerQuality);
         SpinnerLocation = (Spinner)findViewById(R.id.SpinnerLocation);
-        ETprice = (TextView)findViewById(R.id.ETprice);
+        ETprice = (EditText)findViewById(R.id.ETprice);
 
         saveButton = (Button)findViewById(R.id.saveButton);
         deleteButton = (Button)findViewById(R.id.deleteButton);
-        backToListButton = (Button)findViewById(R.id.backToListButton);
+        //backToListButton = (Button)findViewById(R.id.backToListButton);
+        priceButton = (Button)findViewById(R.id.priceButton);
+
 
         // Set TextView and EditTexts
         ViewBotanicalName.setText(record.botanicalName);
@@ -201,6 +207,10 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         ViewType1.setText(record.type1);
         ViewType2.setText(record.type2);
         ETprice.setText(Double.toString(record.price));
+        ETprice.setFocusable(false);
+        ETprice.setFocusableInTouchMode(false); // user touches widget on phone with touch screen
+        ETprice.setClickable(false);
+        ((EditText)findViewById(R.id.ETprice)).getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
 
         // Size spinner
         ArrayAdapter<CharSequence> sizeAdapter = ArrayAdapter.createFromResource(this, R.array.size, android.R.layout.simple_spinner_item);
@@ -231,11 +241,24 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         SpinnerLocation.setSelection(spinnerLocationPosition);
 
         // Details Spinner
+
         ArrayAdapter<CharSequence> detailAdapter = ArrayAdapter.createFromResource(this, R.array.details, android.R.layout.simple_spinner_item);
         detailAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerDetails.setAdapter(detailAdapter);
-        int etDetailsPosition = detailAdapter.getPosition(record.details);
-        SpinnerDetails.setSelection(etDetailsPosition);
+        int spinnerDetailsPosition = detailAdapter.getPosition(record.details.split(",")[0]);
+        SpinnerDetails.setSelection(spinnerDetailsPosition);
+
+        ArrayAdapter<CharSequence> detailAdapter2 = ArrayAdapter.createFromResource(this, R.array.details, android.R.layout.simple_spinner_item);
+        detailAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinnerDetails2.setAdapter(detailAdapter2);
+        int spinnerDetails2Position = detailAdapter2.getPosition(record.details.split(",")[1]);
+        SpinnerDetails2.setSelection(spinnerDetails2Position);
+
+        ArrayAdapter<CharSequence> detailAdapter3 = ArrayAdapter.createFromResource(this, R.array.details, android.R.layout.simple_spinner_item);
+        detailAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinnerDetails3.setAdapter(detailAdapter3);
+        int spinnerDetails3Position = detailAdapter3.getPosition(record.details.split(",")[2]);
+        SpinnerDetails3.setSelection(spinnerDetails3Position);
 
         // Set up Spinner Listeners
         SpinnerSize.setOnItemSelectedListener(this);
@@ -243,11 +266,14 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         SpinnerQuality.setOnItemSelectedListener(this);
         SpinnerLocation.setOnItemSelectedListener(this);
         SpinnerDetails.setOnItemSelectedListener(this);
+        SpinnerDetails2.setOnItemSelectedListener(this);
+        SpinnerDetails3.setOnItemSelectedListener(this);
 
         // Set up Button Listeners
         saveButton.setOnClickListener(this);
         deleteButton.setOnClickListener(this);
-        backToListButton.setOnClickListener(this);
+        //backToListButton.setOnClickListener(this);
+        priceButton.setOnClickListener(this);
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
@@ -304,10 +330,32 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         Intent intent;
 
         switch(v.getId()){
+            case R.id.priceButton:
+                AlertDialog.Builder alert = new AlertDialog.Builder(RecordActivity.this);
+                alert.setTitle("Enter Password");
+                final EditText input = new EditText(RecordActivity.this);
+                alert.setView(input);
+                alert.setNeutralButton("Enter", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (input.getText().toString().equals("42513")) {
+                            ETprice.setFocusable(true);
+                            ETprice.setFocusableInTouchMode(true);
+                            ETprice.setClickable(true);
+                            ((EditText)findViewById(R.id.ETprice)).getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                        }
+                        else {
+                            Toast.makeText(RecordActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                });
+                alert.show();
+                break;
             case R.id.saveButton:
                 String size = SpinnerSize.getSelectedItem().toString();
                 int numAvail = Integer.parseInt(ETnumAvail.getText().toString());
-                String details = SpinnerDetails.getSelectedItem().toString();
+                String details = SpinnerDetails.getSelectedItem().toString() + "," + SpinnerDetails2.getSelectedItem().toString() + "," + SpinnerDetails3.getSelectedItem().toString();
                 String notes = SpinnerNotes.getSelectedItem().toString();
                 String quality = SpinnerQuality.getSelectedItem().toString();
                 String location = SpinnerLocation.getSelectedItem().toString();
@@ -315,13 +363,13 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                 if(isInputValid(size, numAvail, quality, location, price)) {
 
 
-                    record.size = SpinnerSize.getSelectedItem().toString();
-                    record.numAvail = Integer.parseInt(ETnumAvail.getText().toString());
-                    record.details = SpinnerDetails.getSelectedItem().toString();
-                    record.notes = SpinnerNotes.getSelectedItem().toString();
-                    record.quality = SpinnerQuality.getSelectedItem().toString();
-                    record.location = SpinnerLocation.getSelectedItem().toString();
-                    record.price = Float.parseFloat(ETprice.getText().toString());
+                    record.size = size;
+                    record.numAvail = numAvail;
+                    record.details = details;
+                    record.notes = notes;
+                    record.quality = quality;
+                    record.location = location;
+                    record.price = price;
 
                     if(!fromBarcode && dbWeekly.checkID(rowID)){
                         // Update record on weeklyDB
@@ -367,13 +415,13 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                         .show();
                 break;
 
-            case R.id.backToListButton:
+            /*case R.id.backToListButton:
                 Log.w(TAG, "Back to List Button pressed......");
                 //intent = new Intent(RecordActivity.this, AvailListActivity.class);
                 //startActivity(intent);
                 finish();
 
-                break;
+                break;*/
         }
     }
 
