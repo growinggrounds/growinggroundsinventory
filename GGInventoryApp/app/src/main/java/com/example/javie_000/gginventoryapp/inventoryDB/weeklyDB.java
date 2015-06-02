@@ -189,7 +189,7 @@ public class weeklyDB {
 
     // Export as CSV
     public Boolean exportCSV(String outputFileName) {
-        Cursor wholeDB = getAllRecords();
+
         Log.w(TAG, "Exporting database to CSV...");
         Boolean returnVal = false;
 
@@ -221,15 +221,18 @@ public class weeklyDB {
 
                 BufferedWriter out = new BufferedWriter(fileWriter);
                 Cursor cursor = getAllRecords();
+                cursor.moveToFirst();
+
                 if (cursor != null) {
                     out.write(csvHeader);
-                    while (cursor.moveToNext()) {
+                    while (!cursor.isAfterLast()) {
                         csvValues = "";
                         for (i = 0; i < ALL_KEYS.length; i++) {
                             csvValues += cursor.getString(i) + ",";
                         }
                         csvValues += "\n";
                         out.write(csvValues);
+                        cursor.moveToNext();
                     }
                     cursor.close();
                 }

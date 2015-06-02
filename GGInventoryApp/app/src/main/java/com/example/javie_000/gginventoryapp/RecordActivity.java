@@ -61,6 +61,10 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
     private static final int M_TYPE2 = 7;
     private static final int M_DROUGHTTOLERANT = 8;
 
+    private static String detail1 = "";
+    private static String detail2 = "";
+    private static String detail3 = "";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,7 +172,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
         record.commonName = cursor.getString(M_COMMONNAME);
         record.size = "";
         record.numAvail = 0;
-        record.details = "";
+        record.details = " / / ";
         record.notes = "";
         record.type1 = cursor.getString(M_TYPE1);
         record.type2 = cursor.getString(M_TYPE2);
@@ -242,23 +246,31 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
 
         // Details Spinner
 
+        Log.w(TAG, "record.details is " + record.details.split(";").length + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
         ArrayAdapter<CharSequence> detailAdapter = ArrayAdapter.createFromResource(this, R.array.details, android.R.layout.simple_spinner_item);
         detailAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerDetails.setAdapter(detailAdapter);
-        int spinnerDetailsPosition = detailAdapter.getPosition(record.details.split(",")[0]);
-        SpinnerDetails.setSelection(spinnerDetailsPosition);
+        if (record.details.split(";").length >= 1) {
+            int spinnerDetailsPosition = detailAdapter.getPosition(record.details.split(";")[0]);
+            SpinnerDetails.setSelection(spinnerDetailsPosition);
+        }
 
         ArrayAdapter<CharSequence> detailAdapter2 = ArrayAdapter.createFromResource(this, R.array.details, android.R.layout.simple_spinner_item);
         detailAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerDetails2.setAdapter(detailAdapter2);
-        int spinnerDetails2Position = detailAdapter2.getPosition(record.details.split(",")[1]);
-        SpinnerDetails2.setSelection(spinnerDetails2Position);
+        if (record.details.split(";").length >= 2) {
+            int spinnerDetails2Position = detailAdapter2.getPosition(record.details.split(";")[1]);
+            SpinnerDetails2.setSelection(spinnerDetails2Position);
+        }
 
         ArrayAdapter<CharSequence> detailAdapter3 = ArrayAdapter.createFromResource(this, R.array.details, android.R.layout.simple_spinner_item);
         detailAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerDetails3.setAdapter(detailAdapter3);
-        int spinnerDetails3Position = detailAdapter3.getPosition(record.details.split(",")[2]);
-        SpinnerDetails3.setSelection(spinnerDetails3Position);
+        if (record.details.split(";").length == 3) {
+            int spinnerDetails3Position = detailAdapter3.getPosition(record.details.split(";")[2]);
+            SpinnerDetails3.setSelection(spinnerDetails3Position);
+        }
 
         // Set up Spinner Listeners
         SpinnerSize.setOnItemSelectedListener(this);
@@ -291,6 +303,18 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
                 break;
             case R.id.SpinnerLocation:
                 record.location = parent.getItemAtPosition(pos).toString();
+                break;
+            case R.id.SpinnerDetails:
+                detail1 = parent.getItemAtPosition(pos).toString();
+                record.details = detail1 + ";" + detail2 + ";" + detail3;
+                break;
+            case R.id.SpinnerDetails2:
+                detail2 = parent.getItemAtPosition(pos).toString();
+                record.details = detail1 + ";" + detail2 + ";" + detail3;
+                break;
+            case R.id.SpinnerDetails3:
+                detail3 = parent.getItemAtPosition(pos).toString();
+                record.details = detail1 + ";" + detail2 + ";" + detail3;
                 break;
         }
     }
@@ -355,7 +379,7 @@ public class RecordActivity extends Activity implements AdapterView.OnItemSelect
             case R.id.saveButton:
                 String size = SpinnerSize.getSelectedItem().toString();
                 int numAvail = Integer.parseInt(ETnumAvail.getText().toString());
-                String details = SpinnerDetails.getSelectedItem().toString() + "," + SpinnerDetails2.getSelectedItem().toString() + "," + SpinnerDetails3.getSelectedItem().toString();
+                String details = SpinnerDetails.getSelectedItem().toString() + ";" + SpinnerDetails2.getSelectedItem().toString() + ";" + SpinnerDetails3.getSelectedItem().toString();
                 String notes = SpinnerNotes.getSelectedItem().toString();
                 String quality = SpinnerQuality.getSelectedItem().toString();
                 String location = SpinnerLocation.getSelectedItem().toString();
